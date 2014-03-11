@@ -35,7 +35,7 @@ del "$env:TEMP\buildAgent.zip"
 copy $agentDir\conf\buildAgent.dist.properties $agentDir\conf\buildAgent.properties
 (Get-Content $agentDir\conf\buildAgent.properties) | Foreach-Object {
     $_ -replace 'serverUrl=http://localhost:8111/', "serverUrl=$serverUrl" `
-	$_ -replace 'name=', "name=$agentName"
+	   -replace 'name=', "name=$agentName"
     } | Set-Content $agentDir\conf\buildAgent.properties
 
 Start-ChocolateyProcessAsAdmin "/C `"cd $agentDir\bin && $agentDir\bin\service.install.bat && $agentDir\bin\service.start.bat`"" cmd
