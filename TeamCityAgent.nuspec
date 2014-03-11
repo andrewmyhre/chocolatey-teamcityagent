@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
+    <metadata>
+        <id>TeamCityAgent</id>
+        <version>1.0.1</version>
+        <title>TeamCity Build Agent</title>
+        <authors>JetBrains</authors>
+        <owners>maartenba;jetbrains</owners>
+        <projectUrl>http://www.jetbrains.com/teamcity</projectUrl>
+        <iconUrl>http://blog.jetbrains.com/teamcity/files/2008/09/teamcity512.png</iconUrl>
+        <requireLicenseAcceptance>false</requireLicenseAcceptance>
+        <description>TeamCity Build Agent - Install with parameters, e.g. -params 'serverurl=http://...'</description>
+        <summary>TeamCity Build Agent - Install with parameters, e.g. -params 'serverurl=http://...'</summary>
+        <copyright>JetBrains s.r.o.</copyright>
+        <tags>teamcity build agent ci continuous integration</tags>
+    </metadata>
+</package>
