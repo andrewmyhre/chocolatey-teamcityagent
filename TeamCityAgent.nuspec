@@ -1,11 +1,11 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
     <metadata>
-        <id>TeamCityAgent</id>
+        <id>Chef-TeamCityAgent</id>
         <version>1.0.1</version>
-        <title>TeamCity Build Agent</title>
-        <authors>JetBrains</authors>
-        <owners>maartenba;jetbrains</owners>
+        <title>TeamCity Build Agent for Chef</title>
+        <authors>andrewmyhre</authors>
+        <owners>andrewmyhre</owners>
         <projectUrl>http://www.jetbrains.com/teamcity</projectUrl>
         <iconUrl>http://blog.jetbrains.com/teamcity/files/2008/09/teamcity512.png</iconUrl>
         <requireLicenseAcceptance>false</requireLicenseAcceptance>
