@@ -2,7 +2,7 @@ if ($env:chocolateyPackageParameters -eq $null) {
     Write-ChocolateyFailure 'TeamCityAgent' "No parameters have been passed into Chocolatey install, e.g. -params 'serverUrl=http://...;agentName=...;agentDir=...'"
 }
 
-$parameters = ConvertFrom-StringData -StringData $env:chocolateyPackageParameters.Replace(";", "`n")
+$parameters = ConvertFrom-StringData -StringData $env:chocolateyPackageParameters.Replace(" ", "`n")
 
 ## Validate parameters
 if ($parameters["serverUrl"] -eq $null) {
