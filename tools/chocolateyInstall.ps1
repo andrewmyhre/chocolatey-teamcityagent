@@ -7,6 +7,7 @@ $parameters = ConvertFrom-StringData -StringData $env:chocolateyPackageParameter
 ## Validate parameters
 if ($parameters["serverUrl"] -eq $null) {
     Write-ChocolateyFailure 'TeamCityAgent' "Please specify the TeamCity server URL by passing it as a parameter to Chocolatey install, e.g. -params 'serverUrl=http://...'"
+	return
 }
 if ($parameters["agentDir"] -eq $null) {
     $parameters["agentDir"] = "$env:SystemDrive\buildAgent"
@@ -16,11 +17,16 @@ if ($parameters["agentName"] -eq $null) {
     $parameters["agentName"] = "$env:COMPUTERNAME"
     Write-Host No agent name is specified. Defaulting to $parameters["agentName"]
 }
+if ($parameters["ownPort"] -eq $null) {
+    $parameters["ownPort"] = "9090"
+    Write-Host No agent port is specified. Defaulting to $parameters["ownPort"]
+}
 
 ## Make local variables of it
 $serverUrl = $parameters["serverUrl"];
 $agentDir = $parameters["agentDir"];
 $agentName = $parameters["agentName"];
+$ownPort = $parameters["ownPort"];
 
 ## Download from TeamCity server
 Get-ChocolateyWebFile 'buildAgent.zip' "$env:TEMP\buildAgent.zip" "$serverUrl/update/buildAgent.zip"
@@ -35,7 +41,8 @@ del "$env:TEMP\buildAgent.zip"
 copy $agentDir\conf\buildAgent.dist.properties $agentDir\conf\buildAgent.properties
 (Get-Content $agentDir\conf\buildAgent.properties) | Foreach-Object {
     $_ -replace 'serverUrl=http://localhost:8111/', "serverUrl=$serverUrl" `
-	   -replace 'name=', "name=$agentName"
+	   -replace 'name=', "name=$agentName" `
+	   -replace 'ownPort=9090', "ownPort=$ownPort"
     } | Set-Content $agentDir\conf\buildAgent.properties
 
 Start-ChocolateyProcessAsAdmin "/C `"cd $agentDir\bin && $agentDir\bin\service.install.bat && $agentDir\bin\service.start.bat`"" cmd
